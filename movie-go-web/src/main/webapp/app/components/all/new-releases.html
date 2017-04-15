@@ -1,4 +1,18 @@
+<!-- <div style="height: 305px"> -->
+<!-- 	<div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides"> -->
+<!-- 		<div uib-slide data-ng-repeat="movie in movies track by movie.id" index="movie.id"> -->
+<!-- 			<img data-ng-src="{{movie.Poster}}" style="margin: auto;"> -->
+<!-- 			<div class="carousel-caption"> -->
+<!-- 				<h4>{{movie.Title}}</h4> -->
+<!-- 				<p>{{movie.Year}}</p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
 <ul>
-	<li data-ng-repeat="movie in movies"><span>{{movie.Title}}</span>
+	<li data-ng-repeat="movie in movies"><button class="select-btn" class="select-btn" data-ng-click="checkNewRelease(movie.imdbID)">
+			<span data-ng-class="{'glyphicon-center glyphicon glyphicon-ok green' : checked(movie.imdbID) }"></span>
+		</button> <span>{{movie.Title}}</span>
 		<p>{{movie.Year}}</p> <img data-ng-src="{{movie.Poster}}"></li>
 </ul>
