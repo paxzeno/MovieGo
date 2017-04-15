@@ -1,4 +1,5 @@
-var movieGoApp = angular.module('movieGoApp', [ 'ngRoute', 'ngResource' ]);
+var movieGoApp = angular.module('movieGoApp', [ 'ngRoute', 'ngResource',
+		'ui.bootstrap' ]);
 
 movieGoApp.controller('MainController',
 		function($scope, $route, $routeParams, $location) {
