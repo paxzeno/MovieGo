@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.mars_crater.movie.services.releases.consumer.FeedReader;
 import com.mars_crater.movie.services.releases.consumer.GetTorrent;
+import com.mars_crater.movie.services.synology.SynologyApi;
 
 @Path("/NewMediaReleases")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -25,13 +26,13 @@ public class NewMediaReleases {
 
 	@PUT
 	@Path("/update/{id}")
-	public void update(@PathParam(value = "id") String mediaId, Map<String, Object> media) {
+	public void update(@PathParam(value = "id") String mediaId, Map<String, Object> media) throws Exception {
 		Boolean download = (Boolean) media.get("check");
 		
 		if (download != null && download) {
-			GetTorrent.getTorrentUrl(mediaId);
+			System.out.println(SynologyApi.download(GetTorrent.getTorrentUrl(mediaId)));
 		}
-		System.out.println(media);
+		
 	}
 
 }

@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -16,7 +17,7 @@ public class GetTorrent {
 
 	public static String getTorrentUrl(final String imdbId) {
 		try {
-			final URL url = new URL("https://yts.ag/api/v2/list_movies.json?query_term=" + imdbId );
+			final URL url = new URL("https://yts.ag/api/v2/list_movies.json?query_term=" + imdbId);
 			final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 
@@ -38,8 +39,17 @@ public class GetTorrent {
 			map.forEach((k, v) -> {
 				System.out.print("[" + k + "," + v + "] -- ");
 			});
-			System.out.println("\n");
-			return "";
+
+			// TODO create objects to represent this.
+			final StringBuilder urlBuilder = new StringBuilder();
+			List<Map<String, Object>> torrents = (List<Map<String, Object>>) ((Map<String,Object>)((List<Object>)(((Map<String,Object>) map.get("data")).get("movies"))).get(0)).get("torrents");
+			torrents.forEach( torrent -> {
+					if ("1080p".equals(torrent.get("quality"))) {
+						urlBuilder.append((String) torrent.get("url"));
+					}
+			});
+			
+			return urlBuilder.toString();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
