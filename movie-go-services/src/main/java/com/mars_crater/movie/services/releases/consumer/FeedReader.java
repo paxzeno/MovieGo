@@ -1,4 +1,4 @@
-package com.mars_crater.movie.releases.consumer;
+package com.mars_crater.movie.services.releases.consumer;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -106,8 +106,6 @@ public class FeedReader {
 				}
 				
 				ObjectMapper mapper = new ObjectMapper();
-				
-//				final ImdbMovie movie = mapper.readValue(connection.getInputStream(), ImdbMovie.class);
 				
 				Map<String, Object> map = new HashMap<String, Object>();
 
